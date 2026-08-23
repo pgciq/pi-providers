@@ -68,3 +68,21 @@ pi --model agnes-cn/agnes-2.5-pro "你好"
 # 使用 SenseNova
 pi --model sensenova/deepseek-v4-flash "你好"
 ```
+
+## Skills
+
+### modlens
+
+为纯文本模型提供图像识别能力的插件 skill，运行在本地。
+
+**依赖：** Node 22.19+（通过 npx）或 Bun（bunx），或直接安装 `modlens` CLI。
+
+**配置：**
+```bash
+npm install -g @liustack/modlens
+modlens config set gemini-api.apiKey <your-key>
+```
+
+**使用：** 当对话中出现图片时，会自动触发 modlens 进行图像分析，输出结构化 JSON（OCR 文字、版面区域、语义描述等）。
+
+详细配置见 `skills/modlens/references/configure.md`。
