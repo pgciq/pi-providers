@@ -1,0 +1,13 @@
+{
+  "name": "pi-providers",
+  "version": "1.0.0",
+  "description": "Pi extensions for Agnes AI and SenseNova providers",
+  "keywords": ["pi-package"],
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "typebox": "*"
+  },
+  "pi": {
+    "extensions": ["./extensions"]
+  }
+}
