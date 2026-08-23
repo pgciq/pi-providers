@@ -2,6 +2,8 @@
 
 Pi 扩展，提供 Agnes AI 和 SenseNova 模型提供商支持。
 
+🔗 [GitHub 仓库](https://github.com/pgciq/pi-providers)
+
 ## 安装
 
 ### 从 npm（发布后）
