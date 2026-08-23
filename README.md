@@ -15,7 +15,7 @@ pi install npm:pi-providers
 ### 从 git
 
 ```bash
-pi install git:github.com/yourusername/pi-providers
+pi install git:github.com/pgciq/pi-providers
 ```
 
 ### 本地路径
