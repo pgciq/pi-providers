@@ -3,11 +3,19 @@
   "version": "1.0.0",
   "description": "Pi extensions for Agnes AI and SenseNova providers",
   "keywords": ["pi-package"],
+  "type": "module",
+  "scripts": {
+    "build": "node -e \"var fs=require('fs');fs.rmSync('dist',{recursive:true,force:true});fs.mkdirSync('dist',{recursive:true});var files=fs.readdirSync('extensions');files.forEach(function(f){if(f.endsWith('.ts')){var src=fs.readFileSync('extensions/'+f,'utf8');fs.writeFileSync('dist/'+f.replace('.ts','.js'),src)}})\""
+  },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "*",
     "typebox": "*"
   },
   "pi": {
-    "extensions": ["./extensions"]
+    "extensions": ["./dist/agnes.js", "./dist/sensenova.js"]
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^0.84.3",
+    "typescript": "^7.0.2"
   }
 }
