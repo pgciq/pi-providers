@@ -12,7 +12,7 @@
 const effortMap = { minimal: null, low: "low", medium: "medium", high: "high", xhigh: null, max: null };
 
 const REASONING_IDS = new Set([
-  "sensenova-6.8-flash-lite",
+  "sensenova-6.7-flash-lite",
   "deepseek-v4-flash",
   "deepseek-v4-pro",
   "glm-5.2",
@@ -25,7 +25,7 @@ const TEXT_ONLY_IDS = new Set([
 ]);
 
 function detectLimits(id) {
-  if (id === "sensenova-6.8-flash-lite") return { contextWindow: 262144, maxTokens: 65536 };
+  if (id.startsWith("sensenova-6")) return { contextWindow: 262144, maxTokens: 65536 };
   if (id.startsWith("deepseek-v4")) return { contextWindow: 1048576, maxTokens: 65536 };
   if (id.startsWith("glm-5")) return { contextWindow: 1048576, maxTokens: 131072 };
   if (id.startsWith("sensenova")) return { contextWindow: 262144, maxTokens: 65536 };
@@ -64,7 +64,7 @@ function convertModel(model) {
 // ---------------------------------------------------------------------------
 
 const SENSENOVA_SEED = [
-  "sensenova-6.8-flash-lite",
+  "sensenova-6.7-flash-lite",
   "deepseek-v4-flash",
   "glm-5.2",
 ];
