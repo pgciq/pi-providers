@@ -1,6 +1,6 @@
 # pi-providers
 
-Pi 扩展，提供 Agnes AI 和 SenseNova 模型提供商支持。
+Pi 扩展，提供 Agnes AI、SenseNova 和 CodeMie 模型提供商支持。
 
 🔗 [GitHub 仓库](https://github.com/pgciq/pi-providers)
 
@@ -67,6 +67,32 @@ pi --model agnes-cn/agnes-2.5-pro "你好"
 
 # 使用 SenseNova
 pi --model sensenova/deepseek-v4-flash "你好"
+```
+
+### CodeMie
+
+注册 [CodeMie (AI/Run)](https://github.com/codemie-ai/codemie-code) 企业网关的单个提供商：
+
+- `codemie` - 全部模型。非 Claude 模型走 OpenAI 兼容协议（`/v1`），
+  Claude 模型自动走原生 Anthropic Messages 协议（保留 thinking / caching）。
+
+**环境变量：**
+- `CODEMIE_BASE_URL` - CodeMie 实例地址（如 `https://codemie.lab.epam.com`）
+- `CODEMIE_JWT_TOKEN` / `CODEMIE_API_KEY` / `CODEMIE_COOKIE` - 可选，直接指定凭证（CI 场景）
+- `CODEMIE_MODEL` - 模型列表获取失败时的静态回退模型 ID
+
+**OAuth SSO 登录（推荐，类似 GitHub Copilot）：**
+
+启动时不会弹出浏览器。未登录时提供商处于待登录状态，首次主动使用 CodeMie 模型或
+执行 `/login codemie` 时才会打开浏览器完成 EPAM SSO 登录并持久化凭证到
+`~/.pi/agent/auth.json`。会话过期后，下次实际请求 CodeMie 时自动刷新。
+
+模型列表在启动时从 `{CODEMIE_BASE_URL}/v1/llm_models?include_all=true` 动态发现。
+
+```bash
+# 使用示例
+pi --model codemie/gpt-5.1-codex "你好"
+pi --model codemie-anthropic/claude-sonnet-4-5 "你好"
 ```
 
 ## Skills
