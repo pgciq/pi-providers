@@ -95,6 +95,14 @@ pi --model codemie/gpt-5.1-codex "你好"
 pi --model codemie-anthropic/claude-sonnet-4-5 "你好"
 ```
 
+## 模型发现（非阻塞启动）
+
+本包内置的 `agnes` / `sensenova` / `codemie` 三个提供商均遵循同一原则：**加载时立即用种子模型列表注册，pi 启动即可用，绝不等待网络发现而阻塞**。完整的模型目录在**后台**通过 pi 的 `refreshModels` 回调（或后台热重注册）刷新：
+
+- 种子列表始终立即可用，即使离线或未设置 API Key；
+- 后台发现成功后替换种子列表，并持久化到 pi 的 provider 缓存（或 `~/.pi/cache/` 下的本地缓存文件），重启 / 离线启动也能用；
+- 每个网络请求都有超时保护，任何失败都回退到已有列表，注册永不中断。
+
 ## Skills
 
 ### modlens
